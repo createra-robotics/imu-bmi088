@@ -1,22 +1,18 @@
-name: Publish
+name: Publish to TestPyPI
 
 on:
-  release:
-    types: [created]
   push:
     tags:
-      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+-rc[0-9]+"
 
 jobs:
-  publish:
+  publish-test:
     runs-on: ubuntu-latest
-    environment: pypi
+    environment: testpypi
     permissions:
       id-token: write
     steps:
       - uses: actions/checkout@v5
-        with:
-          lfs: true
       - uses: actions/setup-python@v6
         with:
           python-version: "3.10"
@@ -24,5 +20,7 @@ jobs:
         run: |
           pip install build
           python -m build
-      - name: Publish to PyPI
+      - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@v1.13.0
+        with:
+          repository-url: https://test.pypi.org/legacy/

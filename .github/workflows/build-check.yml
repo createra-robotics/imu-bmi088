@@ -1,0 +1,20 @@
+name: Build check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+      - name: Build sdist and wheel
+        run: |
+          pip install build twine
+          python -m build
+          twine check dist/*

@@ -4,12 +4,22 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "imu-bmi088"
-version = "1.0.0"
+version = "1.0.1"
 authors = [{ name = "CreatEra Robotics", email = "contact@createra.tech" }]
 description = "A library for BMI088 IMU via I2C interface"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["smbus3==0.5.5", "numpy>=2.2.5,<2.3.0", "ahrs"]
+dependencies = ["smbus3>=0.5.5", "numpy>=2.2.5", "ahrs"]
+license = "MIT"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: System :: Hardware :: Hardware Drivers",
+]
+
+[project.urls]
+Homepage = "https://github.com/createra-robotics/imu-bmi088"
+Issues = "https://github.com/createra-robotics/imu-bmi088/issues"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
